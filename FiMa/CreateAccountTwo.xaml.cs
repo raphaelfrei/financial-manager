@@ -6,7 +6,7 @@ public partial class CreateAccountTwo : ContentPage {
     }
 
     void BtnProximo_Clicked(System.Object sender, System.EventArgs e) {
-        Navigation.PushAsync(new MainPage());
+        Navigation.PushAsync(new CreateAccountTree());
         Navigation.RemovePage(this);
     }
 

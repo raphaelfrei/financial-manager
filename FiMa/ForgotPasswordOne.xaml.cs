@@ -7,7 +7,8 @@ public partial class ForgotPasswordOne : ContentPage {
     }
 
     void BtnProximo_Clicked(System.Object sender, System.EventArgs e) {
-
+        Navigation.PushAsync(new ForgotPasswordTwo());
+        Navigation.RemovePage(this);
     }
 
     void BtnVoltar_Clicked(System.Object sender, System.EventArgs e) {

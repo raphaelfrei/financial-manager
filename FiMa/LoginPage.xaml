@@ -17,7 +17,7 @@
 
             <Label Text=" " HeightRequest="50"/>
             <Label Text="E-mail" HeightRequest="30"/>
-            <Entry Placeholder="nome@exemplo.com" HeightRequest="30" Keyboard="Email"/>
+            <Entry Placeholder="nome@exemplo.com" Keyboard="Email"/>
 
             <Label Text=" " HeightRequest="30"/>
             <Label Text="Senha" HeightRequest="30"/>

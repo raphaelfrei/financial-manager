@@ -5,11 +5,11 @@
              Title="CreateAccountTwo"
              NavigationPage.HasNavigationBar="False">
 
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="30">
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-        <Frame HeightRequest="50" BorderColor="Transparent" BackgroundColor="Transparent">
+        <Frame BorderColor="Transparent" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="Center">
 
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
                 <Image Source="btn_login_check.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
                 <BoxView WidthRequest="80" HeightRequest="1" Color="Black" Background="Transparent" Margin="5"/>
                 <Image Source="btn_login_two.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
@@ -19,12 +19,12 @@
 
         </Frame>
 
-        <Label Text=" " HeightRequest="50"/>
+        <Label Text=" " HeightRequest="50" Margin="0,20,0,0"/>
 
         <Label Text="Agora vamos entender qual é o seu perfil" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30"/>
         <Label Text=" " HeightRequest="30"/>
 
-        <Label Text="Defina seus objetivos:" HeightRequest="30" FontSize="Medium"/>
+        <Label Text="Defina seus objetivos:" HeightRequest="30" Margin="0,20,0,0" FontSize="Medium"/>
 
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
@@ -74,7 +74,7 @@
         
         <Label Text=" " HeightRequest="30"/>
 
-        <Label Text="Qual sua média mensal" HeightRequest="30" FontSize="Medium"/>
+        <Label Text="Qual sua média mensal" HeightRequest="30" Margin="0,20,0,0" FontSize="Medium"/>
 
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <HorizontalStackLayout>
@@ -95,7 +95,7 @@
 
         
         <Label Text=" " HeightRequest="30"/>
-        <Button Text="PRÓXIMO" BackgroundColor="#1C1831" x:Name="BtnProximo" Clicked="BtnProximo_Clicked"/>
+        <Button Text="PRÓXIMO" BackgroundColor="#1C1831" x:Name="BtnProximo" Clicked="BtnProximo_Clicked" Margin="0,20,0,0"/>
 
     </VerticalStackLayout>
 

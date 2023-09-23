@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FiMa.ImportarPDF"
+             Title="ImportarPDF">
+    <VerticalStackLayout HorizontalOptions="Center" Margin="30">
+        <Label 
+        Text="Importar PDF"
+        VerticalOptions="Center" 
+        FontSize="20"
+        FontAttributes="Bold"
+        HorizontalOptions="Center" />
+
+        <Image Source="icone_pdf.png" HeightRequest="170" Margin="40" WidthRequest="170" Aspect="AspectFit"/>
+        
+        <Label Text="Escolha o PDF que deseja importar" HeightRequest="30"/>
+        <Entry Placeholder="R$ 0,00" Keyboard="Plain"/>
+
+        <Label Text="Esse arquivo precisa de senha de acesso?" HeightRequest="30" Margin="0,10,0,0"/>
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <HorizontalStackLayout>
+                <StackLayout HorizontalOptions="Start">
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="CBInvestir"/>
+                        <Label Text=" Sim" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnClickSim"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="CBControlar"/>
+                        <Label Text="Não" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnClickNao"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </StackLayout>
+            </HorizontalStackLayout>
+
+        </StackLayout>
+
+        <Label Text="Qual a senha de acesso do arquivo?" HeightRequest="30" Margin="0,20,0,0"/>
+        <Entry Placeholder="" Keyboard="Text" IsPassword="True"/>
+
+        <Button Text="Importar PDF" BackgroundColor="#1C1831" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" Margin="0,20,0,0"/>
+
+        <Frame CornerRadius="5" BorderColor="Black" BackgroundColor="Transparent" Padding="1" Margin="0,15,0,0">
+            <Button Text="Cancelar" TextColor="Black" BackgroundColor="#FFFFFF" x:Name="BtnVoltar" Clicked="BtnVoltar_Clicked"/>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

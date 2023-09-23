@@ -7,7 +7,7 @@
 
     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="30">
 
-        <Frame HeightRequest="50" BorderColor="Transparent" BackgroundColor="Transparent">
+        <Frame BorderColor="Transparent" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center">
 
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="btn_login_one.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
@@ -19,9 +19,18 @@
 
         </Frame>
 
+       
+        
+        
+        
+        
+        
+        
+        
+        
         <Label Text=" " HeightRequest="50"/>
 
-        <Label Text="Preencha os campos a seguir para darmos continuidade com o seu cadastro" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30"/>
+        <Label Text="Preencha os campos a seguir para darmos continuidade com o seu cadastro" VerticalOptions="Center" HorizontalOptions="Center"/>
 
         <Label Text=" " HeightRequest="30"/>
 
@@ -34,7 +43,7 @@
         <Label Text=" " HeightRequest="30"/>
 
         <Label Text="Data de Nascimento" HeightRequest="30"/>
-        <DatePicker HeightRequest="30"/>
+        <DatePicker/>
         <Label Text=" " HeightRequest="30"/>
 
         <Label Text="Gênero" HeightRequest="30"/>
