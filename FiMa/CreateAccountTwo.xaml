@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FiMa.CreateAccountTwo"
+             Title="CreateAccountTwo"
+             NavigationPage.HasNavigationBar="False">
+
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="30">
+
+        <Frame HeightRequest="50" BorderColor="Transparent" BackgroundColor="Transparent">
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="btn_login_check.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
+                <BoxView WidthRequest="80" HeightRequest="1" Color="Black" Background="Transparent" Margin="5"/>
+                <Image Source="btn_login_two.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
+                <BoxView WidthRequest="80" HeightRequest="1" Color="Black" Background="Transparent" Margin="5"/>
+                <Image Source="btn_login_three.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
+            </HorizontalStackLayout>
+
+        </Frame>
+
+        <Label Text=" " HeightRequest="50"/>
+
+        <Label Text="Agora vamos entender qual é o seu perfil" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30"/>
+        <Label Text=" " HeightRequest="30"/>
+
+        <Label Text="Defina seus objetivos:" HeightRequest="30" FontSize="Medium"/>
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <HorizontalStackLayout>
+                <StackLayout HorizontalOptions="Start">
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="CBInvestir"/>
+                        <Label Text=" Investir" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnClickInvestir"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="CBDivida"/>
+                        <Label Text=" Quitar Dívidas" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnClickDivida"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="CBControlar"/>
+                        <Label Text=" Controlar Gastos" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnClickControlar"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="CBPlanejar"/>
+                        <Label Text=" Planejamento" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnClickPlanejar"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </StackLayout>
+            </HorizontalStackLayout>
+
+        </StackLayout>
+        
+        <Label Text=" " HeightRequest="30"/>
+
+        <Label Text="Qual sua média mensal" HeightRequest="30" FontSize="Medium"/>
+
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <HorizontalStackLayout>
+                <StackLayout WidthRequest="150">
+                    <Label Text="Renda Mensal" HeightRequest="30"/>
+                    <Entry Placeholder="R$ 0.000,00" Keyboard="Numeric"/>
+
+                </StackLayout>
+                <Label Text=" " WidthRequest="30"/>
+                <StackLayout WidthRequest="150">
+                    <Label Text="Despesa Mensal" HeightRequest="30"/>
+                    <Entry Placeholder="R$ 0.000,00" Keyboard="Numeric"/>
+
+                </StackLayout>
+            </HorizontalStackLayout>
+
+        </StackLayout>
+
+        
+        <Label Text=" " HeightRequest="30"/>
+        <Button Text="PRÓXIMO" BackgroundColor="#1C1831" x:Name="BtnProximo" Clicked="BtnProximo_Clicked"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>

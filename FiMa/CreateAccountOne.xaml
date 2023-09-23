@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FiMa.CreateAccountOne"
+             Title="Criar uma Conta"
+             NavigationPage.HasNavigationBar="False">
+
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="30">
+
+        <Frame HeightRequest="50" BorderColor="Transparent" BackgroundColor="Transparent">
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="btn_login_one.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
+                <BoxView WidthRequest="80" HeightRequest="1" Color="Black" Background="Transparent" Margin="5"/>
+                <Image Source="btn_login_two.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
+                <BoxView WidthRequest="80" HeightRequest="1" Color="Black" Background="Transparent" Margin="5"/>
+                <Image Source="btn_login_three.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
+            </HorizontalStackLayout>
+
+        </Frame>
+
+        <Label Text=" " HeightRequest="50"/>
+
+        <Label Text="Preencha os campos a seguir para darmos continuidade com o seu cadastro" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30"/>
+
+        <Label Text=" " HeightRequest="30"/>
+
+        <Label Text="Nome completo" HeightRequest="30"/>
+        <Entry Placeholder="Nome Sobrenome"/>
+        <Label Text=" " HeightRequest="30"/>
+
+        <Label Text="Email" HeightRequest="30"/>
+        <Entry Placeholder="nome@exemplo.com" Keyboard="Email"/>
+        <Label Text=" " HeightRequest="30"/>
+
+        <Label Text="Data de Nascimento" HeightRequest="30"/>
+        <DatePicker HeightRequest="30"/>
+        <Label Text=" " HeightRequest="30"/>
+
+        <Label Text="Gênero" HeightRequest="30"/>
+        <Picker Title="Selecione o Gênero">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Feminino</x:String>
+                    <x:String>Masculino</x:String>
+                    <x:String>Outro</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label Text=" " HeightRequest="30"/>
+        <Button Text="PRÓXIMO" BackgroundColor="#1C1831" x:Name="BtnProximo" Clicked="BtnProximo_Clicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>
