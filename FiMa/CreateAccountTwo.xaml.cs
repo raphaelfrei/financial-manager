@@ -15,10 +15,12 @@ public partial class CreateAccountTwo : ContentPage {
 
         if (String.IsNullOrWhiteSpace(EtRenda.Text) || Convert.ToInt32(EtRenda.Text) == 0) {
             DisplayAlert("Erro", "Sua renda deve ser maior que R$ 0.", "OK");
+            return;
         }
 
         if (String.IsNullOrWhiteSpace(EtDespesa.Text) || Convert.ToInt32(EtDespesa.Text) == 0) {
             DisplayAlert("Erro", "Sua despesa deve ser maior que R$ 0.", "OK");
+            return;
         }
 
         Navigation.PushAsync(new CreateAccountTree());
