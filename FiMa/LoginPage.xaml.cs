@@ -7,7 +7,8 @@ public partial class LoginPage : ContentPage {
     }
 
     void BtnEntrar_Clicked(System.Object sender, System.EventArgs e) {
-
+        Navigation.PushAsync(new MainPage());
+        Navigation.RemovePage(this);
     }
 
     void BtnCadastrar_Clicked(System.Object sender, System.EventArgs e) {

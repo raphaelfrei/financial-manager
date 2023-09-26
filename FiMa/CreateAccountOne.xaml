@@ -7,7 +7,7 @@
 
     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="30">
 
-        <Frame HeightRequest="50" BorderColor="Transparent" BackgroundColor="Transparent">
+        <Frame BorderColor="Transparent" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Margin="-5">
 
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="btn_login_one.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit"/>
@@ -18,27 +18,27 @@
             </HorizontalStackLayout>
 
         </Frame>
-
+        
         <Label Text=" " HeightRequest="50"/>
 
-        <Label Text="Preencha os campos a seguir para darmos continuidade com o seu cadastro" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30"/>
+        <Label Text="Preencha os campos a seguir para darmos continuidade com o seu cadastro" VerticalOptions="Center" HorizontalOptions="Center"/>
 
         <Label Text=" " HeightRequest="30"/>
 
         <Label Text="Nome completo" HeightRequest="30"/>
-        <Entry Placeholder="Nome Sobrenome"/>
+        <Entry Placeholder="Nome Sobrenome" x:Name="EtNome"/>
         <Label Text=" " HeightRequest="30"/>
 
         <Label Text="Email" HeightRequest="30"/>
-        <Entry Placeholder="nome@exemplo.com" Keyboard="Email"/>
+        <Entry Placeholder="nome@exemplo.com" Keyboard="Email" x:Name="EtEmail"/>
         <Label Text=" " HeightRequest="30"/>
 
         <Label Text="Data de Nascimento" HeightRequest="30"/>
-        <DatePicker HeightRequest="30"/>
+        <DatePicker x:Name="DpNascimento"/>
         <Label Text=" " HeightRequest="30"/>
 
         <Label Text="Gênero" HeightRequest="30"/>
-        <Picker Title="Selecione o Gênero">
+        <Picker Title="Selecione o Gênero" x:Name="PcGenero">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Feminino</x:String>

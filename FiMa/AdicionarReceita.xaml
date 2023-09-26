@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FiMa.AdicionarReceita"
+             Title="Adicionar Receita">
+    <VerticalStackLayout HorizontalOptions="Center" Margin="30">
+        <Label 
+        Text="Adicionar Receita"
+        VerticalOptions="Center" 
+        FontSize="20"
+        FontAttributes="Bold"
+        HorizontalOptions="Center" />
+
+        <Image Source="adicionar_receita.png" HeightRequest="170" Margin="60" WidthRequest="170" Aspect="AspectFit"/>
+
+        <Label Text="Qual valor a ser adicionado?" HeightRequest="30"/>
+        <Entry Placeholder="R$ 0,00" Keyboard="Numeric"/>
+
+        <Label Text="Adicione uma descrição para esta receita" HeightRequest="30" Margin="0,20,0,0"/>
+        <Entry Placeholder="Descrição" Keyboard="Text"/>
+
+        <Button Text="Adicionar" BackgroundColor="#1C1831" x:Name="BtnConcluir" Clicked="BtnConcluir_Clicked" Margin="0,20,0,0"/>
+
+        <Frame CornerRadius="5" BorderColor="Black" BackgroundColor="Transparent" Padding="1" Margin="0,15,0,0">
+            <Button Text="Cancelar" TextColor="Black" BackgroundColor="#FFFFFF" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked"/>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>

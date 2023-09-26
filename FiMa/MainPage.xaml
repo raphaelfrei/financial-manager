@@ -2,10 +2,10 @@
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FiMa.MainPage"
-             Title="MainPage"
+             Title="Voltar"
              NavigationPage.HasNavigationBar="False">
 
-    <ContentPage Title="1">
+    <ContentPage IconImageSource="icone_home.png">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 1"
@@ -15,43 +15,47 @@
 
     </ContentPage>
 
-    <ContentPage Title="2">
+    <ContentPage IconImageSource="receita_icone.png">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 2"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+            <Button Text="Telas de receita" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
         </VerticalStackLayout>
 
     </ContentPage>
 
-    <ContentPage Title="3">
+    <ContentPage IconImageSource="botao_mais">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 3"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+            <Button Text="Telas de PDF" BackgroundColor="#BE935C" x:Name="BtnPDF" Clicked="BtnPDF_Clicked"/>
         </VerticalStackLayout>
 
     </ContentPage>
 
-    <ContentPage Title="4">
+    <ContentPage IconImageSource="despesas_icone.png">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 4"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+            <Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>
         </VerticalStackLayout>
 
     </ContentPage>
 
-    <ContentPage Title="5">
+    <ContentPage IconImageSource="configuracoes_icone.png">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 5"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
         </VerticalStackLayout>
+        
 
     </ContentPage>
     
