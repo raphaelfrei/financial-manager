@@ -17,7 +17,7 @@
         <Entry Placeholder="R$ 0,00" Keyboard="Numeric"/>
 
         <Label Text="Adicione uma descrição para esta receita" HeightRequest="30" Margin="0,20,0,0"/>
-        <Entry Placeholder="Descrição" Keyboard="Text"/>
+        <Entry Placeholder="Descrição" Keyboard="Text" x:Name="EtDesc"/>
 
         <Button Text="Adicionar" BackgroundColor="#1C1831" x:Name="BtnConcluir" Clicked="BtnConcluir_Clicked" Margin="0,20,0,0"/>
 

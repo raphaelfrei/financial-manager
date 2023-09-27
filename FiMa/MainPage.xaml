@@ -1,21 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FiMa.MainPage"
-             Title="Voltar"
-             NavigationPage.HasNavigationBar="False">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            x:Class="FiMa.MainPage"
+            Title="Voltar"
+            NavigationPage.HasNavigationBar="False">
 
-    <ContentPage IconImageSource="icone_home.png">
-        <VerticalStackLayout>
-            <Label 
-                Text="Pagina 1"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
+    <ContentPage IconImageSource="icone_home.png" Title="Home">
+        <ScrollView>
+
+            <VerticalStackLayout>
+
+                <StackLayout BackgroundColor="White">
+
+                    <!-- Letrinhas no topo -->
+                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="JAN" Margin="0,0,15,0" FontSize="Medium" TextColor="#BE935C">
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Label.GestureRecognizers>
+
+                        </Label>
+
+                        <Label Text="FEV" Margin="15,0,15,0" FontSize="Large" FontAttributes="Bold" TextColor="#BE935C">
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Label.GestureRecognizers>
+
+                        </Label>
+
+                        <Label Text="MAR" Margin="15,0,0,0" FontSize="Medium" TextColor="#BE935C">
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Label.GestureRecognizers>
+
+                        </Label>
+                    </HorizontalStackLayout>
+
+                    <!-- Olhinho -->
+                    <BoxView VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="30" HeightRequest="30" Margin="0,30,0,0"/>
+
+                    <!-- Cifra -->
+                    <Label Text="R$ 100.000,00" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30"/>
+
+                    <!-- Receita e Despesas -->
+                    <StackLayout>
+                        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <VerticalStackLayout>
+                                <Label Text="Receita" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Frame BackgroundColor="Green" CornerRadius="20" HeightRequest="50">
+
+                                    <Label Text="R$ 10.000,00" TextColor="White"/>
+
+                                </Frame>
+
+                            </VerticalStackLayout>
+
+                            <Label Text=" " WidthRequest="20"/>
+
+                            <VerticalStackLayout>
+
+                                <Label Text="Despesa" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Frame BackgroundColor="Red" CornerRadius="20" HeightRequest="50">
+
+                                    <Label Text="R$ 10.000,00" TextColor="White"/>
+
+                                </Frame>
+
+                            </VerticalStackLayout>
+
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+
+                    <Label Text=" " WidthRequest="20"/>
+
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#1C1831" HeightRequest="50">
+
+                    <VerticalStackLayout>
+
+
+
+                    </VerticalStackLayout>
+
+                </StackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
 
     </ContentPage>
 
-    <ContentPage IconImageSource="receita_icone.png">
+    <!--<ContentPage IconImageSource="receita_icone.png">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 2"
@@ -24,7 +106,7 @@
             <Button Text="Telas de receita" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
         </VerticalStackLayout>
 
-    </ContentPage>
+    </ContentPage>-->
 
     <ContentPage IconImageSource="botao_mais">
         <VerticalStackLayout>
@@ -32,12 +114,14 @@
                 Text="Pagina 3"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+            <Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>
             <Button Text="Telas de PDF" BackgroundColor="#BE935C" x:Name="BtnPDF" Clicked="BtnPDF_Clicked"/>
+            <Button Text="Telas de receita" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
         </VerticalStackLayout>
 
     </ContentPage>
 
-    <ContentPage IconImageSource="despesas_icone.png">
+    <!--<ContentPage IconImageSource="despesas_icone.png">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 4"
@@ -46,9 +130,9 @@
             <Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>
         </VerticalStackLayout>
 
-    </ContentPage>
+    </ContentPage>-->
 
-    <ContentPage IconImageSource="configuracoes_icone.png">
+    <ContentPage IconImageSource="configuracoes_icone.png" Title="Configurações">
         <VerticalStackLayout>
             <Label 
                 Text="Pagina 5"

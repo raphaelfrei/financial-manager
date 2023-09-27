@@ -16,8 +16,8 @@ public partial class ImportarPDF : ContentPage {
     }
 
     private void BtnVoltar_Clicked(object sender, EventArgs e) {
-        Navigation.PushAsync(new MainPage());
-        Navigation.RemovePage(this);
+        //Navigation.PushAsync(new MainPage());
+        Navigation.PopAsync();
     }
 
     void OnClickSim(object sender, EventArgs args) {
