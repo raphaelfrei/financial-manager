@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FiMa.DetalhesCompra"
+             Title="DetalhesCompra">
+    <VerticalStackLayout>
+        <StackLayout BackgroundColor="#1C1831" HeightRequest="280">
+            <Label 
+                Text="Detalhes da Compra"
+                VerticalOptions="Center" 
+                FontSize="18"
+                TextColor="White"
+                HorizontalOptions="Center"  Margin="0,20,0,0"/>
+
+            <Label Text="OUTBACK DA CASA DO CARALHO" VerticalOptions="Center" FontSize="25" TextColor="White" HorizontalOptions="Center"  Margin="0,85,0,0"/>
+            <Label Text="R$ 200,00" VerticalOptions="Center" FontSize="28" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"  Margin="0,15,0,0"/>
+
+            <Grid>
+                <Ellipse WidthRequest="90" HeightRequest="90" Fill="white" Margin="0,40,0,0" Stroke="#BE935C" StrokeThickness="4"/>
+                <Image Source="restaurante_icone.png" HeightRequest="55" WidthRequest="55" Aspect="AspectFit" Margin="0,35,0,0"/>
+            </Grid>
+
+            <Label Text="Restaurantes" VerticalOptions="Center" FontSize="18" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"  Margin="0,5,0,0"/>
+
+            <HorizontalStackLayout>
+                <Label Text="Data:" VerticalOptions="Center" FontSize="16" TextColor="Black"  HorizontalOptions="Center"  Margin="25,20,100,0"/>
+                <Label Text="Forma de pagamento:" VerticalOptions="Center" FontSize="16" TextColor="Black" HorizontalOptions="Center"  Margin="35,20,0,0"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="12/10/2023" VerticalOptions="Center" FontSize="16" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"  Margin="25,10,55,0"/>
+                <Label Text="Crédito - à vista" VerticalOptions="Center" FontSize="16" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"  Margin="35,10,0,0"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,120,0,0">
+                <Button Text="Excluir" BackgroundColor="#BE935C" WidthRequest="160" x:Name="BtnExcluir" Clicked="BtnExcluir_Clicked" Margin="0,20,0,0"/>
+                <Button Text="Editar" BackgroundColor="#1C1831" WidthRequest="160" x:Name="BtnEditar" Clicked="BtnEditar_Clicked" Margin="20,20,0,0"/>
+            </HorizontalStackLayout>
+
+            <Frame CornerRadius="5" BorderColor="Black" WidthRequest="337" BackgroundColor="Transparent" Padding="1" Margin="0,10,0,0">
+                <Button Text="Voltar" TextColor="Black" BackgroundColor="#FFFFFF" x:Name="BtnVoltar" Clicked="BtnVoltar_Clicked"/>
+            </Frame>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
