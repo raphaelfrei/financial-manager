@@ -20,49 +20,14 @@ public partial class ImportarPDF : ContentPage {
         Navigation.PopAsync();
     }
 
-    void OnClickSim(object sender, EventArgs args) {
-        CBInvestir.IsChecked = !CBInvestir.IsChecked;
-    }
+    void CbSenha_CheckedChanged(System.Object sender, Microsoft.Maui.Controls.CheckedChangedEventArgs e) {
 
-    void OnClickNao(object sender, EventArgs args) {
-        CBControlar.IsChecked = !CBControlar.IsChecked;
-    }
-
-    void CBInvestir_CheckedChanged(System.Object sender, Microsoft.Maui.Controls.CheckedChangedEventArgs e) {
-
-        if (isCodeChangingCheckState)
-            return;
-
-        isCodeChangingCheckState = true;
-        CBInvestir.IsChecked = true;
-        CBControlar.IsChecked = false;
-
-        if (!CBInvestir.IsChecked) {
+        if (!CbSenha.IsChecked) {
             EtSenha.IsEnabled = false;
             EtSenha.Text = "";
         } else
             EtSenha.IsEnabled = true;
-
-        isCodeChangingCheckState = false;
     }
-
-    void CBControlar_CheckedChanged(System.Object sender, Microsoft.Maui.Controls.CheckedChangedEventArgs e) {
-        if (isCodeChangingCheckState)
-            return;
-
-        isCodeChangingCheckState = true;
-        CBInvestir.IsChecked = false;
-        CBControlar.IsChecked = true;
-
-        if (CBControlar.IsChecked) {
-            EtSenha.IsEnabled = false;
-            EtSenha.Text = "";
-        } else
-            EtSenha.IsEnabled = true;
-
-        isCodeChangingCheckState = false;
-    }
-
 
     async void BtnProcurar_Clicked(System.Object sender, System.EventArgs e) {
         var options = new PickOptions {
@@ -88,5 +53,4 @@ public partial class ImportarPDF : ContentPage {
         }
         return null;
     }
-
 }
