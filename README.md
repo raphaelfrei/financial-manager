@@ -12,8 +12,8 @@ an efficient, cost-free and secure solution to manage their finances.
 
 ## 📝 Project Status:
 
-- [ ] UX/UI Development
-- [ ] Database Schema
+- [x] UX/UI Development
+- [x] Database Schema
 
 - [ ] Front End Implementation
 - [ ] Back End Implementation
