@@ -18,7 +18,7 @@ public partial class MainPage : TabbedPage {
     }
 
     private void BtnPDF_Clicked(object sender, EventArgs e) {
-        ContentPage navTo = new DetalhesReceita();
+        ContentPage navTo = new ImportarPDF();
         Navigation.PushAsync(navTo);
         //Navigation.RemovePage(this);
     }

@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="False">
     <VerticalStackLayout HorizontalOptions="Center" Margin="30">
         <Label 
-            Text="Adicionar Despesa"
+            Text="Importar PDF"
             VerticalOptions="Center" 
             FontSize="20"
             FontAttributes="Bold"
