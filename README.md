@@ -8,14 +8,14 @@ original contribution to the field of technology and finance and has the ability
 an efficient, cost-free and secure solution to manage their finances.
 
 
-**Keywords:** Financial Manager, FiMa, *Open Banking*, Financial Management, Financial Education.
+**Keywords:** Financial Manager, FiMa, Personal Finance Management, Financial Management, Financial Education.
 
 ## 📝 Project Status:
 
 - [x] UX/UI Development
 - [x] Database Schema
 
-- [ ] Front End Implementation
+- [x] Front End Implementation
 - [ ] Back End Implementation
 - [ ] Database Implementation
 - [ ] Documentation
