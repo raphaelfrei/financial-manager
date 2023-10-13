@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FiMa.LoginPage"
+             Title="Página de Login"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+
+        <StackLayout HeightRequest="100" BackgroundColor="#1C1831">
+            <Image Source="cypher_logo.png" HeightRequest="100" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="40">
+
+            <Label Text="Entre para começar a sua gestão financeira" FontSize="Large"/>
+
+            <Label Text=" " HeightRequest="50"/>
+            <Label Text="E-mail" HeightRequest="30"/>
+            <Entry Placeholder="nome@exemplo.com" Keyboard="Email" x:Name="EtEmail"/>
+
+            <Label Text=" " HeightRequest="30"/>
+            <Label Text="Senha" HeightRequest="30"/>
+            <Entry Placeholder="Insira sua senha" IsPassword="True" x:Name="EtSenha"/>
+
+            <Label Text="Esqueceu a senha?" TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnClickForgotPass"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text=" " HeightRequest="30"/>
+
+            <Button Text="ENTRAR" BackgroundColor="#1C1831" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked"/>
+
+            <Frame BackgroundColor="Transparent" BorderColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <BoxView WidthRequest="100" HeightRequest="1" Color="Black" Background="Transparent"/>
+                    <Label Text="  OU  " VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black"/>
+                    <BoxView WidthRequest="100" HeightRequest="1" Color="Black" Background="Transparent"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Button Text="CADASTRAR" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
+
+        
+        </VerticalStackLayout>
+
+    </StackLayout>
+
+</ContentPage>

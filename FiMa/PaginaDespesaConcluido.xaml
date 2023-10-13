@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FiMa.PaginaDespesaConcluido"
+             Title="PaginaDespesaConcluido"
+             NavigationPage.HasNavigationBar="False">
+
+    <VerticalStackLayout HorizontalOptions="Center" Margin="30">
+        <Label 
+        Text="Adicionar Despesa"
+        VerticalOptions="Center" 
+        FontSize="20"
+        FontAttributes="Bold"
+        HorizontalOptions="Center" />
+
+        <Image Source="despesa_concluida.png" HeightRequest="350" Margin="60" WidthRequest="350" Aspect="AspectFit"/>
+
+
+        <Button Text="Voltar" BackgroundColor="#1C1831" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" Margin="0,20,0,0"/>
+
+    </VerticalStackLayout>
+</ContentPage>
