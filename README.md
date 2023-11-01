@@ -7,6 +7,8 @@ functional and secure Back-End. **FiMa** represents an original contribution to 
 of technology and finance and has the ability to offer users an efficient, cost-free and 
 secure solution to manage their finances.
 
+
+
 **Keywords:** Financial Manager, FiMa, Personal Finance Management, Financial Management, Financial Education.
 
 ## 📝 Project Status:
@@ -15,10 +17,10 @@ secure solution to manage their finances.
 - [x] Database Schema
 
 - [x] Front End Implementation
-- [ ] Back End Implementation
-- [ ] Database Implementation
-- [ ] Documentation
-- [ ] Final Paper
+- [x] Back End Implementation
+- [x] Database Implementation
+- [x] Documentation
+- [x] Final Paper
 
 ## 💻 Pre Requisites:
 
@@ -28,9 +30,8 @@ Version 8.1 or superior
 ### iOS:
 Version 12.1 or superior
 
-## 🗒 Aditional Features:
-
-1. PDF Credit Card Invoice Reader
+## Source Code:
+[LaTeX](https://github.com/raphaelfrei/fima-final_paper)
       
 ## 👥 Team Members:
 
