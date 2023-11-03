@@ -9,6 +9,7 @@ namespace FiMa.Models {
         public string DescricaoReceita { get; set; }
         public string ComentarioReceita { get; set; }
         public int IDUsuario { get; set; }
+        public string ImageSource { get; set; }
 
     }
 }

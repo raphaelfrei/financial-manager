@@ -11,6 +11,7 @@ namespace FiMa.Models {
         public string FormaPagamentoDespesa { get; set; }
         public int ParcelamentoDespesa { get; set; }
         public int IDUsuario { get; set; }
+        public string ImageSource { get; set; }
 
     }
 }

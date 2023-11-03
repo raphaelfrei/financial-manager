@@ -8,7 +8,7 @@
             NavigationPage.HasNavigationBar="False">
 
     <ContentPage IconImageSource="icone_home.png" Title="Home">
-        <ScrollView>
+        <!--<ScrollView> -->
 
             <VerticalStackLayout>
 
@@ -46,16 +46,28 @@
                     <Image Source="olho_aberto.png"  VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" Margin="15,10,0,0"  Aspect="AspectFit"/>
 
                     <!-- Cifra -->
-                    <Label Text="R$ 100.000,00" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
+                    <Label Text="R$ ---,--" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
 
                     <!-- Receita e Despesas -->
                     <StackLayout Margin="0,20,0,0">
                         <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                             <VerticalStackLayout>
-                                <Label Text="Receita" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
-                                <Frame BackgroundColor="Green" CornerRadius="23" >
 
-                                    <Label Text="R$ 10.000,00" TextColor="White" FontAttributes="Bold" x:Name="LbReceita"/>
+
+                                <StackLayout>
+
+                                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                                        <Image Source="receita_icone.png" HeightRequest="20" WidthRequest="20"/>
+                                        <Label Text=" Receita" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                                    </HorizontalStackLayout>
+
+                                </StackLayout>
+
+                                <Frame BackgroundColor="Green" CornerRadius="15" BorderColor="Transparent" HeightRequest="30">
+
+                                    <Label Text="R$ ---,--" TextColor="White" FontAttributes="Bold" x:Name="LbReceita" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,0,0"/>
 
                                 </Frame>
 
@@ -65,10 +77,20 @@
 
                             <VerticalStackLayout>
 
-                                <Label Text="Despesa" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
-                                <Frame BackgroundColor="Red" CornerRadius="23">
+                                <StackLayout>
 
-                                    <Label Text="R$ 10.000,00" TextColor="White" FontAttributes="Bold" x:Name="LbDespesa"/>
+                                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                                        <Image Source="despesas_icone.png" HeightRequest="20" WidthRequest="20"/>
+                                        <Label Text=" Despesa" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                                    </HorizontalStackLayout>
+
+                                </StackLayout>
+                                
+                                <Frame BackgroundColor="Red" CornerRadius="15" BorderColor="Transparent" HeightRequest="30">
+
+                                    <Label Text="R$ ---,--" TextColor="White" FontAttributes="Bold" x:Name="LbDespesa" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,0,0"/>
 
                                 </Frame>
 
@@ -92,46 +114,69 @@
 
                     <HorizontalStackLayout>
 
-                        <Label Text="R$ 300,00" TextColor="White" FontSize="Medium" Margin="25,25,0,0"/>
-                        <Label Text="R$ 300,00" TextColor="White" FontSize="Small" Margin="180,28,0,0"/>
+                        <Label Text="R$ ---,--" TextColor="White" FontSize="Medium" Margin="25,25,0,0"/>
+                        <Label Text="R$ ---,--" TextColor="White" FontSize="Small" Margin="180,28,0,0"/>
 
                     </HorizontalStackLayout>
 
                     <VerticalStackLayout>
 
-                        <Frame BackgroundColor="Green" CornerRadius="60" WidthRequest="340" HeightRequest="0" Margin="-8,5,0,0"/>
+                        <!--<Frame BackgroundColor="Green" CornerRadius="60" WidthRequest="340" HeightRequest="10" Margin="-8,5,0,0"/>-->
+                        <Slider MinimumTrackColor="Green" MaximumTrackColor="Red" Margin="20,0,30,0" Minimum="0" Maximum="100" HeightRequest="10" ThumbColor="Transparent"/>
                         <Label Text="Limite de gastos do mês" TextColor="White" FontSize="11" Margin="25,4,0,0"/>
 
-                        <CollectionView x:Name="CvExtrato" ItemsSource="{Binding DespesasCollection}" ItemsLayout="VerticalList" Margin="10" InputTransparent="True">
 
-                            <CollectionView.ItemTemplate>
+                        <StackLayout>
 
-                                <DataTemplate>
+                            <CollectionView x:Name="CvExtrato" ItemsSource="{Binding DespesasCollection}" ItemsLayout="VerticalList" Margin="10" MaximumHeightRequest="320">
 
-                                    <StackLayout>
+                                <CollectionView.ItemTemplate>
 
-                                        <Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
+                                    <DataTemplate>
 
-                                            <HorizontalStackLayout>
+                                        <StackLayout>
 
-                                                <Image Source="comida.png" WidthRequest="30" HeightRequest="30" Margin="5,10,0,10" Aspect="AspectFill"/>
-                                                <Label Text="Outback - eldorado" TextColor="Black" FontSize="15" Margin="15,-1,0,0"/>
-                                                <Label Text="R$ -200,00" TextColor="Black" FontSize="15" Margin="42,-1,0,0"/>
+                                            <Frame BackgroundColor="White" CornerRadius="18" WidthRequest="340" HeightRequest="80" Margin="-10,10,0,0">
 
+                                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start">
 
-                                            </HorizontalStackLayout>
+                                                    <HorizontalStackLayout>
 
-                                        </Frame>
+                                                        <Image Source="{Binding ImageSource}" WidthRequest="30" HeightRequest="30" Margin="5,0,0,0" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
 
-                                        <Label Text=" " HeightRequest="10"/>
+                                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-                                    </StackLayout>
+                                                            <Label Text="{Binding DescricaoDespesa}" TextColor="Black" FontSize="15" Margin="15,0,0,0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                            <!--<Label Text="R$ -200,00" TextColor="Black" FontSize="15" Margin="42,-1,0,0"/>-->
+                                                            <Label VerticalOptions="Center" HorizontalOptions="Center" Margin="15,0,0,0">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="R$ "/>
+                                                                        <Span Text="{Binding ValorDespesa}"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
 
-                                </DataTemplate>
+                                                        </VerticalStackLayout>
 
-                            </CollectionView.ItemTemplate>
+                                                    </HorizontalStackLayout>
+                                                                                                        
+                                                </StackLayout>
 
-                        </CollectionView>
+                                            </Frame>
+
+                                            <Label Text=" " HeightRequest="10"/>
+
+                                        </StackLayout>
+
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+
+                        </StackLayout>
+                        
 
                         <!--<Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
 
@@ -177,7 +222,7 @@
                 </StackLayout>
 
             </VerticalStackLayout>
-        </ScrollView>
+        <!--</ScrollView>-->
 
 
     </ContentPage>
@@ -220,7 +265,7 @@
                     <Image Source="olho_aberto.png"  VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" Margin="15,10,0,0"  Aspect="AspectFit"/>
 
                     <!-- Cifra -->
-                    <Label Text="R$ 100.000,00" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
+                    <Label Text="R$ ---,--" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
 
                     <!-- Receita e Despesas -->
                     <StackLayout Margin="0,20,0,0">
@@ -302,23 +347,66 @@
 
                 <VerticalStackLayout>
                     <Label 
-        Text="Pagina 2"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
-                    <Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>
+                        Text="Pagina 2"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" />
+                    <!--<Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>-->
+                    <Button Text="Telas de receita" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
+                    <Button Text="Criar Receitas de Teste" x:Name="BtnReceitasTeste" Clicked="BtnReceitasTeste_Clicked"/>
                 </VerticalStackLayout>
 
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage>
 
-    <ContentPage IconImageSource="botao_mais.png">
-        <VerticalStackLayout>
-            <Label 
-                Text="Pagina 3"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            <Button Text="Telas de PDF" BackgroundColor="#BE935C" x:Name="BtnPDF" Clicked="BtnPDF_Clicked"/>
+    <ContentPage IconImageSource="adicao_icone.png">
+        <VerticalStackLayout VerticalOptions="End">
+            <Frame BorderColor="#1C1831" BackgroundColor="#1C1831" Margin="20,0,20,20">
+
+                <StackLayout Margin="-10">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+
+                        <Image Source="imppdf.png" VerticalOptions="Center"/>
+                        <Label Text=" " WidthRequest="15"/>
+                        <Label Text="IMPORTAR PDF" VerticalOptions="Center" TextColor="White"/>
+
+                    </HorizontalStackLayout>
+                   
+                </StackLayout>
+
+            </Frame>
+
+            <Frame BorderColor="#1A8B08" BackgroundColor="#1A8B08" Margin="20,0,20,20">
+
+                <StackLayout Margin="-10">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+
+                        <Image Source="impreceita.png" VerticalOptions="Center"/>
+                        <Label Text=" " WidthRequest="15"/>
+                        <Label Text="ADICIONAR RECEITA" VerticalOptions="Center" TextColor="White"/>
+
+                    </HorizontalStackLayout>
+                   
+                </StackLayout>
+
+            </Frame>
+
+            <Frame BorderColor="#C82424" BackgroundColor="#C82424" Margin="20,0,20,20">
+
+                <StackLayout Margin="-10">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+
+                        <Image Source="impdesp.png" VerticalOptions="Center"/>
+                        <Label Text=" " WidthRequest="15"/>
+                        <Label Text="ADICIONAR DESPESA" VerticalOptions="Center" TextColor="White"/>
+
+                    </HorizontalStackLayout>
+                   
+                </StackLayout>
+
+            </Frame>
+
+
         </VerticalStackLayout>
 
     </ContentPage>
@@ -446,7 +534,9 @@
                         Text="Pagina 2"
                         VerticalOptions="Center" 
                         HorizontalOptions="Center" />
-                    <Button Text="Telas de receita" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
+                    <Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>
+                    <Button Text="Criar Despesa de Teste" x:Name="BtnDespTeste" Clicked="BtnDespTeste_Clicked"/>
+                    
                 </VerticalStackLayout>
 
             </VerticalStackLayout>

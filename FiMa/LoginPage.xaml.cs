@@ -10,10 +10,21 @@ public partial class LoginPage : ContentPage {
 
     void BtnEntrar_Clicked(System.Object sender, System.EventArgs e) {
 
+        if (string.IsNullOrWhiteSpace(EtEmail.Text)) {
+            DisplayAlert("Erro", "O email não pode ser nulo.", "OK");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(EtSenha.Text)) {
+            DisplayAlert("Erro", "A senha não pode ser nula.", "OK");
+            return;
+        }
+
         int status = SQLConn.TryLogin(EtEmail.Text, EtSenha.Text);
 
         if (status == 0) {
             DisplayAlert("Erro", "Um erro aconteceu. Tente novamente mais tarde.", "OK");
+            return;
         } else if (status == 1) {
             Navigation.PushAsync(new MainPage());
             Navigation.RemovePage(this);
@@ -22,19 +33,22 @@ public partial class LoginPage : ContentPage {
             DisplayAlert("Erro", "O email informado não está cadastrado no sistema. Verifique e tente novamente.", "OK");
             EtEmail.Text = string.Empty;
             EtSenha.Text = string.Empty;
+            return;
         } else {
             DisplayAlert("Erro", "A senha informada está incorreta. Verifique e tente novamente.", "OK");
             EtSenha.Text = string.Empty;
+            return;
         }
 
 
     }
 
     void BtnCadastrar_Clicked(System.Object sender, System.EventArgs e) {
-        //ContentPage navTo = new CreateAccountOne();
+        ContentPage navTo = new CreateAccountOne();
         //Navigation.PushAsync(navTo);
         //Navigation.RemovePage(this);
 
+        //return;
         User user = new User();
         user.NomeUsuario = "Raphael Frei";
         user.EmailUsuario = "raphaelrfrei@gmail.com";

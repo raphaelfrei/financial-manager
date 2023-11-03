@@ -8,6 +8,8 @@ public static class SQLConn {
     private static string DBName = "dbase.db";
     private static string ConnectionString = $"Data Source={DBName};";
 
+    public static string IDUsuario = string.Empty;
+
     //$"";
     public static (bool, string) AddUser(User user) {
 
@@ -50,6 +52,83 @@ public static class SQLConn {
         }
 
         return (status, message);
+    }
+
+    public static void CreateIncome(Income item) {
+
+        string createCommand = $"INSERT INTO receita (valor_receita, descricao_receita, comentario_receita, id_usuario, imagem_receita) VALUES ('{item.ValorReceita}', '{item.DescricaoReceita}', '{item.ComentarioReceita}', {IDUsuario}, '{item.ImageSource}')";
+        try {
+
+            using (var conn = new SqliteConnection(ConnectionString)) {
+                conn.Open();
+
+                using (var cmdd = new SqliteCommand(createCommand, conn)) {
+
+                    cmdd.ExecuteNonQuery();
+
+                }
+
+                conn.Close();
+            }
+        } catch (Exception) {
+
+        }
+    }
+
+    public static void CreateOutcome(Outcome item) {
+
+        string createCommand = $"INSERT INTO despesa (valor_despesa, descricao_despesa, categoria_despesa, data_despesa, forma_pagamento_despesa, parcelamento_despesa, id_usuario, imagem_despesa) VALUES ('{item.ValorDespesa}', '{item.DescricaoDespesa}', '{item.CategoriaDespesa}', {item.DataDespesa}, {item.FormaPagamentoDespesa}, {item.ParcelamentoDespesa}, {IDUsuario}, '{item.ImageSource}')";
+        try {
+
+            using (var conn = new SqliteConnection(ConnectionString)) {
+                conn.Open();
+
+                using (var cmdd = new SqliteCommand(createCommand, conn)) {
+
+                    cmdd.ExecuteNonQuery();
+
+                }
+
+                conn.Close();
+            }
+        } catch (Exception) {
+
+        }
+    }
+
+    public static int GetIDUsuario(string email) {
+
+        string countCommand = $"SELECT COUNT(*) FROM usuario WHERE email_usuario='{email}'";
+        string selectCommand = $"SELECT id_usuario FROM usuario WHERE email_usuario='{email}'";
+
+        int id = 0;
+
+        using (var conn = new SqliteConnection(ConnectionString)) {
+            conn.Open();
+
+            using (var cmd = new SqliteCommand(countCommand, conn)) {
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                if (count == 0)
+                    return id;
+
+                using (var cmdd = new SqliteCommand(selectCommand, conn)) {
+                    using (var reader = cmdd.ExecuteReader()) {
+                        if (reader.Read()) {
+                            id = Convert.ToInt32(reader.GetString(reader.GetOrdinal("id_usuario")));
+
+                        }
+                    }
+                }
+
+            }
+
+            conn.Close();
+        }
+
+        return id;
+
     }
 
     public static int GetEmailCount(string email) {
@@ -134,8 +213,8 @@ public static class SQLConn {
 
             //DropAllTables();
 
-            string TableDespesa = "CREATE TABLE IF NOT EXISTS \"despesa\" (\"id_despesa\" INTEGER UNIQUE,\"valor_despesa\" INTEGER,\"descricao_despesa\" TEXT,\"categoria_despesa\" TEXT,\"data_despesa\" TEXT,\"forma_pagamento_despesa\" TEXT,\"parcelamento_despesa\" INTEGER,\"id_usuario\" INTEGER, PRIMARY KEY(\"id_despesa\" AUTOINCREMENT))";
-            string TableReceita = "CREATE TABLE IF NOT EXISTS \"receita\"(\"id_receita\" INTEGER UNIQUE,\"valor_receita\" INTEGER,\"descricao_receita\" TEXT,\"comentario_receita\" INTEGER,\"id_usuario\" INTEGER, PRIMARY KEY(\"id_receita\"))";
+            string TableDespesa = "CREATE TABLE IF NOT EXISTS \"despesa\" (\"id_despesa\" INTEGER UNIQUE,\"valor_despesa\" INTEGER,\"descricao_despesa\" TEXT,\"imagem_despesa\" TEXT,\"categoria_despesa\" TEXT,\"data_despesa\" TEXT,\"forma_pagamento_despesa\" TEXT,\"parcelamento_despesa\" INTEGER,\"id_usuario\" INTEGER, PRIMARY KEY(\"id_despesa\" AUTOINCREMENT))";
+            string TableReceita = "CREATE TABLE IF NOT EXISTS \"receita\"(\"id_receita\" INTEGER UNIQUE,\"valor_receita\" INTEGER,\"descricao_receita\" TEXT,\"imagem_receita\" TEXT,\"comentario_receita\" INTEGER,\"id_usuario\" INTEGER, PRIMARY KEY(\"id_receita\"))";
             string TableUsuario = "CREATE TABLE IF NOT EXISTS \"usuario\" (\"id_usuario\" INTEGER NOT NULL UNIQUE,\"nome_usuario\" TEXT NOT NULL,\"email_usuario\" TEXT NOT NULL UNIQUE,\"data_nasc_usuario\" TEXT NOT NULL,\"genero_usuario\" INTEGER NOT NULL,\"vai_investir_usuario\" INTEGER,\"vai_quitar_div_usuario\" INTEGER,\"vai_controlar_gast_usuario\" INTEGER,\"vai_planejar_usuario\" INTEGER,\"renda_usuario\" NUMERIC,\"despesa_fixa_usuario\" INTEGER,\"senha_usuario\" INTEGER NOT NULL,\"primeiro_login\" INTEGER, PRIMARY KEY(\"id_usuario\" AUTOINCREMENT))";
 
             using (var command = new SqliteCommand(TableDespesa, conn)) {
