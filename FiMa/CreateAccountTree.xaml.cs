@@ -45,9 +45,7 @@ public partial class CreateAccountTree : ContentPage {
 
         var result = SQLConn.AddUser(Usuario);
 
-        if (result.Item1)
-            DisplayAlert("Sucesso", "A conta foi criada com sucesso, retorne ao Menu Principal para acessá-la.", "OK");
-        else {
+        if (!result.Item1) {
             DisplayAlert("Erro", $"{result.Item2}", "OK");
             return;
         }

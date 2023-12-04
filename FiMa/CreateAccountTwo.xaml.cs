@@ -1,4 +1,5 @@
-﻿using FiMa.Models;
+﻿using System.Text.RegularExpressions;
+using FiMa.Models;
 
 namespace FiMa;
 
@@ -70,5 +71,29 @@ public partial class CreateAccountTwo : ContentPage {
 
     void OnClickPlanejar(object sender, EventArgs args) {
         CBPlanejar.IsChecked = !CBPlanejar.IsChecked;
+    }
+
+    void EtDespesa_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e) {
+        EtDespesa.Text = Regex.Replace(EtDespesa.Text, "[^0-9],", "");
+
+        if (e.NewTextValue.Contains(',')) {
+            if (e.NewTextValue.Length - 1 - e.NewTextValue.IndexOf(",") > 2) {
+                var s = e.NewTextValue[..(e.NewTextValue.IndexOf(",") + 2 + 1)];
+                EtDespesa.Text = s;
+                EtDespesa.SelectionLength = s.Length;
+            }
+        }
+    }
+
+    void EtRenda_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e) {
+        EtRenda.Text = Regex.Replace(EtRenda.Text, "[^0-9],", "");
+
+        if (e.NewTextValue.Contains(',')) {
+            if (e.NewTextValue.Length - 1 - e.NewTextValue.IndexOf(",") > 2) {
+                var s = e.NewTextValue[..(e.NewTextValue.IndexOf(",") + 2 + 1)];
+                EtRenda.Text = s;
+                EtRenda.SelectionLength = s.Length;
+            }
+        }
     }
 }
