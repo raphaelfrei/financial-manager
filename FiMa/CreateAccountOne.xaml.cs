@@ -1,8 +1,11 @@
-﻿namespace FiMa;
+﻿using FiMa.Models;
+
+namespace FiMa;
 
 public partial class CreateAccountOne : ContentPage {
 
     private readonly int IdadeMinima = 18;
+    private User Usuario = new User();
 
     public CreateAccountOne() {
         InitializeComponent();
@@ -22,7 +25,13 @@ public partial class CreateAccountOne : ContentPage {
         if (!VerifyGenero())
             return;
 
-        Navigation.PushAsync(new CreateAccountTwo());
+        Usuario.NomeUsuario = EtNome.Text;
+        Usuario.EmailUsuario = EtEmail.Text;
+        Usuario.DataNascimento = DpNascimento.Date.ToShortDateString();
+
+        Usuario.GeneroUsuario = PcGenero.SelectedIndex.ToString();
+
+        Navigation.PushAsync(new CreateAccountTwo(Usuario));
         Navigation.RemovePage(this);
     }
 
@@ -45,6 +54,11 @@ public partial class CreateAccountOne : ContentPage {
 
         if (!email.Contains('@') || !email.Contains('.')) {
             DisplayAlert("Erro", "O email informado não é valido!", "OK");
+            return false;
+        }
+
+        if (SQLConn.GetEmailCount(email) > 0) {
+            DisplayAlert("Erro", "O email informado já foi cadastrado em outra conta!", "OK");
             return false;
         }
 

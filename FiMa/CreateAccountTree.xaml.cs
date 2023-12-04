@@ -1,9 +1,16 @@
+using FiMa.Models;
+
 namespace FiMa;
 
 public partial class CreateAccountTree : ContentPage {
 
-    public CreateAccountTree() {
+    private User Usuario;
+
+
+    public CreateAccountTree(User usuario) {
         InitializeComponent();
+
+        Usuario = usuario;
     }
 
     private void BtnConcluir_Clicked(object sender, EventArgs e) {
@@ -31,6 +38,17 @@ public partial class CreateAccountTree : ContentPage {
 
         if (!AreEqual(EtSenha.Text, EtSenhaRepete.Text)) {
             DisplayAlert("Erro", "As senhas não coincidem.", "OK");
+            return;
+        }
+
+        Usuario.SenhaUsuario = ConvertToMD5.ConvertStringToMD5(EtSenha.Text);
+
+        var result = SQLConn.AddUser(Usuario);
+
+        if (result.Item1)
+            DisplayAlert("Sucesso", "A conta foi criada com sucesso, retorne ao Menu Principal para acessá-la.", "OK");
+        else {
+            DisplayAlert("Erro", $"{result.Item2}", "OK");
             return;
         }
 

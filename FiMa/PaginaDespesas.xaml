@@ -1,41 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="FiMa.PaginaDespesas"
-             Title="Adicionar Despesas">
-    <VerticalStackLayout HorizontalOptions="Center" Margin="30">
-        <Label 
-            Text="Adicionar Despesa"
-            VerticalOptions="Center" 
-            FontSize="18"
-            FontAttributes="Bold"
-            HorizontalOptions="Center" />
+             Title="">
 
-        <Image Source="adicionar_despesa.png" HeightRequest="85" Margin="15" WidthRequest="85" Aspect="AspectFit"/>
+    <ScrollView>
 
-        <Label Text="Qual valor a ser adicionado?" HeightRequest="30"/>
-        <Entry Placeholder="R$ 0,00" Keyboard="Numeric"/>
+        <VerticalStackLayout HorizontalOptions="Center" Margin="30">
+            <Label 
+                Text="Adicionar Despesa"
+                VerticalOptions="Center" 
+                FontSize="18"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
 
-        <Label Text="Adicione uma descrição para esta despesa" HeightRequest="36" Margin="0,15,0,0"/>
-        <Entry Placeholder="" Keyboard="Text" x:Name="EtDesc"/>
+            <Image Source="adicionar_despesa.png" HeightRequest="85" Margin="15" WidthRequest="85" Aspect="AspectFit"/>
 
-        <Label Text="Qual a categoria da despesa?" HeightRequest="33" Margin="0,15,0,0"/>
-        <Picker Title="Selecione a categoria" x:Name="PcGenero">
-          
-        </Picker>
+            <Label Text="Qual valor a ser adicionado?" HeightRequest="30"/>
+            <Entry Placeholder="R$ 0,00" Keyboard="Numeric" x:Name="EtDespesa" TextChanged="EtDespesa_TextChanged"/>
 
-        <Label Text="Quando ocorreu essa despesa?" HeightRequest="30" Margin="0,15,0,0"/>
-        <DatePicker x:Name="DpNascimento"/>
+            <Label Text="Adicione uma descrição para esta despesa" HeightRequest="36" Margin="0,15,0,0"/>
+            <Entry Placeholder="" Keyboard="Text" x:Name="EtDesc"/>
 
-        <Label Text="Qual a forma de pagamento?" HeightRequest="33" Margin="0,15,0,0"/>
-        <Picker Title="Selecione a forma de pagamento">
+            <Label Text="Qual a categoria da despesa?" HeightRequest="33" Margin="0,15,0,0"/>
+            <Picker Title="Selecione a categoria" x:Name="PcGenero">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Restaurante</x:String>
+                        <x:String>Mercado</x:String>
+                        <x:String>Conta de Água/Luz/Internet</x:String>
+                        <x:String>Lazer</x:String>
+                        <x:String>Despesa Médica</x:String>
+                        <x:String>Outros</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
-        </Picker>
+            <Label Text="Quando ocorreu essa despesa?" HeightRequest="30" Margin="0,15,0,0"/>
+            <DatePicker x:Name="DpNascimento"/>
 
-        <Button Text="Adicionar" BackgroundColor="#1C1831" x:Name="BtnEntrar" Clicked="BtnConfirmar_Clicked" Margin="0,20,0,0"/>
+            <Label Text="Qual a forma de pagamento?" HeightRequest="33" Margin="0,15,0,0"/>
+            <Picker Title="Selecione a forma de pagamento" x:Name="PckForma" SelectedIndexChanged="PckForma_SelectedIndexChanged" ios:Picker.UpdateMode="WhenFinished">
+                 <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Dinheiro/PIX</x:String>
+                        <x:String>Cartão de Débito</x:String>
+                        <x:String>Cartão de Crédito (A Vista)</x:String>
+                        <x:String>Cartão de Crédito (Parcelado)</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
-        <Frame CornerRadius="5" BorderColor="Black" BackgroundColor="Transparent" Padding="1" Margin="0,10,0,0">
-            <Button Text="Cancelar" TextColor="Black" BackgroundColor="#FFFFFF" x:Name="BtnVoltar" Clicked="BtnVoltar_Clicked"/>
-        </Frame>
-    </VerticalStackLayout>
+            <Label Text="Qual o número de parcelas?" HeightRequest="30" x:Name="LbParcela" IsVisible="False"/>
+            <Entry Placeholder="2 ou mais" Keyboard="Numeric" x:Name="EtParcela" TextChanged="EtParcela_TextChanged" IsVisible="False"/>
+
+            <Button Text="Adicionar" BackgroundColor="#1C1831" x:Name="BtnEntrar" Clicked="BtnConfirmar_Clicked" Margin="0,20,0,0"/>
+
+            <Frame CornerRadius="5" BorderColor="Black" BackgroundColor="Transparent" Padding="1" Margin="0,10,0,0">
+                <Button Text="Cancelar" TextColor="Black" BackgroundColor="#FFFFFF" x:Name="BtnVoltar" Clicked="BtnVoltar_Clicked"/>
+            </Frame>
+        </VerticalStackLayout>
+
+    </ScrollView>
+    
 </ContentPage>

@@ -2,13 +2,21 @@
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            xmlns:local="clr-namespace:FiMa.Models"
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="FiMa.MainPage"
             Title="Voltar"
-            NavigationPage.HasNavigationBar="False">
+            NavigationPage.HasNavigationBar="False"
+            >
+
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <local:CurrencyFormatConverter x:Key="CurrencyFormatConverter"/>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
 
     <ContentPage IconImageSource="icone_home.png" Title="Home">
-        <ScrollView>
+        <!--<ScrollView> -->
 
             <VerticalStackLayout>
 
@@ -16,7 +24,7 @@
 
                     <!-- Letrinhas no topo -->
                     <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
-                        <Label Text="JAN" Margin="0,0,15,0" FontSize="Medium" TextColor="#BE935C">
+                        <Label Text="NOV" Margin="0,0,15,0" FontSize="Medium" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -24,7 +32,7 @@
 
                         </Label>
 
-                        <Label Text="FEV" Margin="15,0,15,0" FontSize="Large" FontAttributes="Bold" TextColor="#BE935C">
+                        <Label Text="DEZ" Margin="15,0,15,0" FontSize="Large" FontAttributes="Bold" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -32,7 +40,7 @@
 
                         </Label>
 
-                        <Label Text="MAR" Margin="15,0,0,0" FontSize="Medium" TextColor="#BE935C">
+                        <Label Text="JAN" Margin="15,0,0,0" FontSize="Medium" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -46,16 +54,28 @@
                     <Image Source="olho_aberto.png"  VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" Margin="15,10,0,0"  Aspect="AspectFit"/>
 
                     <!-- Cifra -->
-                    <Label Text="R$ 100.000,00" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
+                    <Label Text="R$ 0,00" x:Name="LbTotalMoney" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
 
                     <!-- Receita e Despesas -->
                     <StackLayout Margin="0,20,0,0">
                         <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                             <VerticalStackLayout>
-                                <Label Text="Receita" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
-                                <Frame BackgroundColor="Green" CornerRadius="23" >
 
-                                    <Label Text="R$ 10.000,00" TextColor="White" FontAttributes="Bold"/>
+
+                                <StackLayout>
+
+                                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                                        <Image Source="receita_icone.png" HeightRequest="20" WidthRequest="20"/>
+                                        <Label Text=" Receita" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                                    </HorizontalStackLayout>
+
+                                </StackLayout>
+
+                                <Frame BackgroundColor="Green" CornerRadius="15" BorderColor="Transparent" HeightRequest="30">
+
+                                    <Label Text="R$ 0,00" TextColor="White" FontAttributes="Bold" x:Name="LbReceita" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,0,0"/>
 
                                 </Frame>
 
@@ -65,10 +85,20 @@
 
                             <VerticalStackLayout>
 
-                                <Label Text="Despesa" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
-                                <Frame BackgroundColor="Red" CornerRadius="23">
+                                <StackLayout>
 
-                                    <Label Text="R$ 10.000,00" TextColor="White" FontAttributes="Bold"/>
+                                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                                        <Image Source="despesas_icone.png" HeightRequest="20" WidthRequest="20"/>
+                                        <Label Text=" Despesa" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                                    </HorizontalStackLayout>
+
+                                </StackLayout>
+                                
+                                <Frame BackgroundColor="Red" CornerRadius="15" BorderColor="Transparent" HeightRequest="30">
+
+                                    <Label Text="R$ 0,00" TextColor="White" FontAttributes="Bold" x:Name="LbDespesa" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,0,0"/>
 
                                 </Frame>
 
@@ -92,17 +122,71 @@
 
                     <HorizontalStackLayout>
 
-                        <Label Text="R$ 300,00" TextColor="White" FontSize="Medium" Margin="25,25,0,0"/>
-                        <Label Text="R$ 300,00" TextColor="White" FontSize="Small" Margin="180,28,0,0"/>
+                        <Label Text="Você comprometeu 0% da sua renda" TextColor="White" FontSize="Small" Margin="25,25,0,0" x:Name="LbPorcentoRenda"/>
+                        <!--<Label Text="R$ 0,00" TextColor="White" FontSize="Small" Margin="240,28,0,0"/>-->
 
                     </HorizontalStackLayout>
 
                     <VerticalStackLayout>
 
-                        <Frame BackgroundColor="Green" CornerRadius="60" WidthRequest="340" HeightRequest="0" Margin="-8,5,0,0"/>
+                        <!--<Frame BackgroundColor="Green" CornerRadius="60" WidthRequest="340" HeightRequest="10" Margin="-8,5,0,0"/>-->
+                        <Slider MinimumTrackColor="Green" x:Name="SldExtratoHome" IsEnabled="False" MaximumTrackColor="Red" Margin="20,0,30,0" Minimum="0" Maximum="100" Value="50" HeightRequest="10" ThumbColor="Transparent"/>
                         <Label Text="Limite de gastos do mês" TextColor="White" FontSize="11" Margin="25,4,0,0"/>
 
-                        <Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
+
+                        <StackLayout>
+
+                            <CollectionView x:Name="CvExtrato" ItemsSource="{Binding AllCollection}" ItemsLayout="VerticalList" Margin="10" MaximumHeightRequest="320">
+
+                                <CollectionView.ItemTemplate>
+
+                                    <DataTemplate>
+
+                                        <StackLayout>
+
+                                            <Frame BackgroundColor="White" CornerRadius="18" WidthRequest="340" HeightRequest="80" Margin="-10,10,0,0">
+
+                                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start">
+
+                                                    <HorizontalStackLayout>
+
+                                                        <Image Source="{Binding Imagem}" WidthRequest="30" HeightRequest="30" Margin="5,0,0,0" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Start">
+
+                                                            <Label Text="{Binding Nome}" TextColor="Black" FontSize="15" Margin="15,0,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                                            <!--<Label Text="R$ -200,00" TextColor="Black" FontSize="15" Margin="42,-1,0,0"/>-->
+                                                            <Label VerticalOptions="Center" HorizontalOptions="Start" Margin="15,0,0,0">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="R$ "/>
+                                                                        <Span Text="{Binding Valor, Converter={StaticResource CurrencyFormatConverter}}"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+
+                                                        </VerticalStackLayout>
+
+                                                    </HorizontalStackLayout>
+                                                                                                        
+                                                </StackLayout>
+
+                                            </Frame>
+
+                                            <Label Text=" " HeightRequest="10"/>
+
+                                        </StackLayout>
+
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+
+                        </StackLayout>
+                        
+
+                        <!--<Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
 
                             <HorizontalStackLayout>
 
@@ -139,14 +223,14 @@
 
                             </HorizontalStackLayout>
 
-                        </Frame>
+                        </Frame>-->
 
                     </VerticalStackLayout>
 
                 </StackLayout>
 
             </VerticalStackLayout>
-        </ScrollView>
+        <!--</ScrollView>-->
 
 
     </ContentPage>
@@ -160,7 +244,7 @@
 
                     <!-- Letrinhas no topo -->
                     <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
-                        <Label Text="JAN" Margin="0,0,15,0" FontSize="Medium" TextColor="#BE935C">
+                        <Label Text="NOV" Margin="0,0,15,0" FontSize="Medium" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -168,7 +252,7 @@
 
                         </Label>
 
-                        <Label Text="FEV" Margin="15,0,15,0" FontSize="Large" FontAttributes="Bold" TextColor="#BE935C">
+                        <Label Text="DEZ" Margin="15,0,15,0" FontSize="Large" FontAttributes="Bold" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -176,7 +260,7 @@
 
                         </Label>
 
-                        <Label Text="MAR" Margin="15,0,0,0" FontSize="Medium" TextColor="#BE935C">
+                        <Label Text="JAN" Margin="15,0,0,0" FontSize="Medium" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -189,7 +273,7 @@
                     <Image Source="olho_aberto.png"  VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" Margin="15,10,0,0"  Aspect="AspectFit"/>
 
                     <!-- Cifra -->
-                    <Label Text="R$ 100.000,00" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
+                    <Label Text="R$ 0,00" x:Name="LbReceitaCifra" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
 
                     <!-- Receita e Despesas -->
                     <StackLayout Margin="0,20,0,0">
@@ -216,17 +300,69 @@
 
                     <HorizontalStackLayout>
 
-                        <Label Text="R$ 300,00" TextColor="Black" FontSize="Medium" Margin="25,25,0,0"/>
-                        <Label Text="R$ 300,00" TextColor="Black" FontSize="Small" Margin="180,28,0,0"/>
+                        <Label Text="R$ 0,00" x:Name="LbRenda" TextColor="Black" FontSize="Medium" VerticalOptions="Center" Margin="25,25,0,0"/>
+                        <Label Text="R$ 15.000,00" x:Name="LbRendaMeta" TextColor="Black" FontSize="Small" VerticalOptions="Center" Margin="169,25,0,0"/>
 
                     </HorizontalStackLayout>
 
                     <VerticalStackLayout>
 
                         <Frame BackgroundColor="Green" CornerRadius="60" WidthRequest="340" HeightRequest="0" Margin="-8,5,0,0"/>
-                        <Label Text="Meta de renda" TextColor="Black" FontSize="13" Margin="25,4,0,0"/>
+                        <Slider MinimumTrackColor="Green" x:Name="SldMetaRenda" IsEnabled="False" MaximumTrackColor="Red" Margin="20,0,30,0" Minimum="0" Maximum="100" Value="50" HeightRequest="10" ThumbColor="Transparent"/>
+                        <Label Text="Meta de receita" TextColor="Black" FontSize="13" Margin="0,4,25,0" HorizontalOptions="End"/>
 
-                        <Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
+                        <StackLayout>
+
+                            <CollectionView x:Name="CvReceitas" ItemsSource="{Binding ReceitasCollection}" ItemsLayout="VerticalList" Margin="10" MaximumHeightRequest="320">
+
+                                <CollectionView.ItemTemplate>
+
+                                    <DataTemplate>
+
+                                        <StackLayout>
+
+                                            <Frame BackgroundColor="White" CornerRadius="18" WidthRequest="340" HeightRequest="80" Margin="-10,10,0,0">
+
+                                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start">
+
+                                                    <HorizontalStackLayout>
+
+                                                        <Image Source="{Binding ImageSource}" WidthRequest="30" HeightRequest="30" Margin="5,0,0,0" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Start">
+
+                                                            <Label Text="{Binding DescricaoReceita}" TextColor="Black" FontSize="15" Margin="15,0,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                                            <!--<Label Text="R$ -200,00" TextColor="Black" FontSize="15" Margin="42,-1,0,0"/>-->
+                                                            <Label VerticalOptions="Center" HorizontalOptions="Start" Margin="15,0,0,0">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="R$ "/>
+                                                                        <Span Text="{Binding ValorReceita}"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+
+                                                        </VerticalStackLayout>
+
+                                                    </HorizontalStackLayout>
+                                                                                                        
+                                                </StackLayout>
+
+                                            </Frame>
+
+                                            <Label Text=" " HeightRequest="10"/>
+
+                                        </StackLayout>
+
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+
+                        </StackLayout>
+
+                        <!--<Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
 
                             <HorizontalStackLayout>
 
@@ -263,31 +399,89 @@
 
                             </HorizontalStackLayout>
 
-                        </Frame>
+                        </Frame>-->
 
                     </VerticalStackLayout>
 
                 </StackLayout>
 
-                <VerticalStackLayout>
+                <!--<VerticalStackLayout>
                     <Label 
-        Text="Pagina 2"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
+                        Text="Pagina 2"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" />
                     <Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>
-                </VerticalStackLayout>
+                    <Button Text="Telas de receita" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
+                    <Button Text="Criar Receitas de Teste" x:Name="BtnReceitasTeste" Clicked="BtnReceitasTeste_Clicked"/>
+                </VerticalStackLayout>-->
 
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage>
 
-    <ContentPage IconImageSource="botao_mais.png">
-        <VerticalStackLayout>
-            <Label 
-                Text="Pagina 3"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            <Button Text="Telas de PDF" BackgroundColor="#BE935C" x:Name="BtnPDF" Clicked="BtnPDF_Clicked"/>
+    <ContentPage IconImageSource="adicao_icone.png">
+        <VerticalStackLayout VerticalOptions="End">
+            <Frame BorderColor="#1C1831" BackgroundColor="#1C1831" Margin="20,0,20,20">
+
+                <StackLayout Margin="-10">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ImportarFatura_Tapped"/>
+
+                        </HorizontalStackLayout.GestureRecognizers>
+
+                        <Image Source="imppdf.png" VerticalOptions="Center"/>
+                        <Label Text=" " WidthRequest="15"/>
+                        <Label Text="IMPORTAR PDF" VerticalOptions="Center" TextColor="White"/>
+
+                    </HorizontalStackLayout>
+                   
+                </StackLayout>
+
+            </Frame>
+
+            <Frame BorderColor="#1A8B08" BackgroundColor="#1A8B08" Margin="20,0,20,20">
+
+                <StackLayout Margin="-10">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AddReceita_Tapped"/>
+
+                        </HorizontalStackLayout.GestureRecognizers>
+
+                        <Image Source="impreceita.png" VerticalOptions="Center"/>
+                        <Label Text=" " WidthRequest="15"/>
+                        <Label Text="ADICIONAR RECEITA" VerticalOptions="Center" TextColor="White"/>
+
+                    </HorizontalStackLayout>
+                   
+                </StackLayout>
+
+            </Frame>
+
+            <Frame BorderColor="#C82424" BackgroundColor="#C82424" Margin="20,0,20,20">
+
+                <StackLayout Margin="-10">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AddDespesa_Tapped"/>
+
+                        </HorizontalStackLayout.GestureRecognizers>
+
+                        <Image Source="impdesp.png" VerticalOptions="Center"/>
+                        <Label Text=" " WidthRequest="15"/>
+                        <Label Text="ADICIONAR DESPESA" VerticalOptions="Center" TextColor="White"/>
+
+                    </HorizontalStackLayout>
+                   
+                </StackLayout>
+
+            </Frame>
+
+
         </VerticalStackLayout>
 
     </ContentPage>
@@ -301,7 +495,7 @@
 
                     <!-- Letrinhas no topo -->
                     <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
-                        <Label Text="JAN" Margin="0,0,15,0" FontSize="Medium" TextColor="#BE935C">
+                        <Label Text="NOV" Margin="0,0,15,0" FontSize="Medium" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -309,7 +503,7 @@
 
                         </Label>
 
-                        <Label Text="FEV" Margin="15,0,15,0" FontSize="Large" FontAttributes="Bold" TextColor="#BE935C">
+                        <Label Text="DEZ" Margin="15,0,15,0" FontSize="Large" FontAttributes="Bold" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -317,7 +511,7 @@
 
                         </Label>
 
-                        <Label Text="MAR" Margin="15,0,0,0" FontSize="Medium" TextColor="#BE935C">
+                        <Label Text="JAN" Margin="15,0,0,0" FontSize="Medium" TextColor="#BE935C">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -330,7 +524,7 @@
                     <Image Source="olho_aberto.png"  VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" Margin="15,10,0,0"  Aspect="AspectFit"/>
 
                     <!-- Cifra -->
-                    <Label Text="R$ 100.000,00" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
+                    <Label Text="R$ 0,00" x:Name="LbDespesaCifra" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="30" FontAttributes="Bold"/>
 
                     <!-- Receita e Despesas -->
                     <StackLayout Margin="0,20,0,0">
@@ -357,17 +551,69 @@
 
                     <HorizontalStackLayout>
 
-                        <Label Text="R$ 300,00" TextColor="Black" FontSize="Medium" Margin="25,25,0,0"/>
-                        <Label Text="R$ 300,00" TextColor="Black" FontSize="Small" Margin="180,28,0,0"/>
+                        <Label Text="R$ 0,00" x:Name="LbDesp" TextColor="Black" FontSize="Medium" Margin="25,25,0,0"/>
+                        <Label Text="        R$ 8.300,00" x:Name="LbDespMeta" TextColor="Black" FontSize="Small" Margin="180,28,0,0"/>
 
                     </HorizontalStackLayout>
 
                     <VerticalStackLayout>
 
-                        <Frame BackgroundColor="Green" CornerRadius="60" WidthRequest="340" HeightRequest="0" Margin="-8,5,0,0"/>
-                        <Label Text="Meta de renda" TextColor="Black" FontSize="13" Margin="25,4,0,0"/>
+                        <Frame BackgroundColor="Green" CornerRadius="60" WidthRequest="340" HeightRequest="0" Margin="-8,5,0,0" HorizontalOptions="End"/>
+                        <Slider MinimumTrackColor="Red" x:Name="SldMetaDespesa" IsEnabled="False" MaximumTrackColor="Green" Margin="20,0,30,0" Minimum="0" Maximum="100" Value="50" HeightRequest="10" ThumbColor="Transparent"/>
+                        <Label Text="Meta de despesa" TextColor="Black" FontSize="13" Margin="0,4,25,0" HorizontalOptions="End"/>
 
-                        <Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
+                        <StackLayout>
+
+                            <CollectionView x:Name="CvDespesas" ItemsSource="{Binding DespesasCollection}" ItemsLayout="VerticalList" Margin="10" MaximumHeightRequest="320">
+
+                                <CollectionView.ItemTemplate>
+
+                                    <DataTemplate>
+
+                                        <StackLayout>
+
+                                            <Frame BackgroundColor="White" CornerRadius="18" WidthRequest="340" HeightRequest="80" Margin="-10,10,0,0">
+
+                                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start">
+
+                                                    <HorizontalStackLayout>
+
+                                                        <Image Source="{Binding ImageSource}" WidthRequest="30" HeightRequest="30" Margin="5,0,0,0" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Start">
+
+                                                            <Label Text="{Binding DescricaoDespesa}" TextColor="Black" FontSize="15" Margin="15,0,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                                            <!--<Label Text="R$ -200,00" TextColor="Black" FontSize="15" Margin="42,-1,0,0"/>-->
+                                                            <Label VerticalOptions="Center" HorizontalOptions="Start" Margin="15,0,0,0">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="R$ "/>
+                                                                        <Span Text="{Binding ValorDespesa}"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+
+                                                        </VerticalStackLayout>
+
+                                                    </HorizontalStackLayout>
+                                                                                                        
+                                                </StackLayout>
+
+                                            </Frame>
+
+                                            <Label Text=" " HeightRequest="10"/>
+
+                                        </StackLayout>
+
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+
+                        </StackLayout>
+
+                        <!--<Frame BackgroundColor="White" CornerRadius="18"  WidthRequest="340" HeightRequest="60" Margin="-10,15,0,0">
 
                             <HorizontalStackLayout>
 
@@ -404,31 +650,222 @@
 
                             </HorizontalStackLayout>
 
-                        </Frame>
+                        </Frame>-->
 
                     </VerticalStackLayout>
 
                 </StackLayout>
 
-                <VerticalStackLayout>
+                <!--<VerticalStackLayout>
                     <Label 
                         Text="Pagina 2"
                         VerticalOptions="Center" 
                         HorizontalOptions="Center" />
-                    <Button Text="Telas de receita" BackgroundColor="#BE935C" x:Name="BtnCadastrar" Clicked="BtnCadastrar_Clicked"/>
-                </VerticalStackLayout>
+                    <Button Text="Telas de despesas" BackgroundColor="#BE935C" x:Name="BtnDespesas" Clicked="BtnDespesas_Clicked"/>
+                    <Button Text="Criar Despesa de Teste" x:Name="BtnDespTeste" Clicked="BtnDespTeste_Clicked"/>
+                    
+                </VerticalStackLayout>-->
 
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage>
 
     <ContentPage IconImageSource="configuracoes_icone.png" Title="Configurações">
-        <VerticalStackLayout>
-            <Label 
-                Text="Pagina 5"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
+
+        <ScrollView>
+
+            <VerticalStackLayout Margin="30">
+
+                <Label Text="Configurações" FontAttributes="Bold" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text=" "/>
+                <Label Text="Aqui você pode ver quanto falta para atingir metas e limites, também pode alterá-las ou excluí-las." TextColor="DarkGray" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                <Label Text=" "/>
+                <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                    <Frame BorderColor="DarkGray" HeightRequest="50">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Frame.GestureRecognizers>
+
+                        <HorizontalStackLayout>
+
+                            <Image Source="meta_icone.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text=" "/>
+                            <Label Text=" Nova meta" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                        </HorizontalStackLayout>
+
+                    </Frame>
+
+                    <Label Text=" " WidthRequest="30"/>
+
+                    <Frame BorderColor="DarkGray" HeightRequest="50">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Frame.GestureRecognizers>
+
+                        <HorizontalStackLayout>
+
+                            <Image Source="limite_icone.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text=" "/>
+                            <Label Text=" Novo limite" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                        </HorizontalStackLayout>
+
+                    </Frame>
+
+                </HorizontalStackLayout>
+
+                <Label Text=" " HeightRequest="50"/>
+
+                <Frame BorderColor="Black">
+
+                    <VerticalStackLayout Margin="5">
+
+                        <HorizontalStackLayout>
+
+                            <Ellipse Fill="Green" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text=" meta 01" TextColor="DarkGray" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                        </HorizontalStackLayout>
+
+                        <Label Text=" "/>
+
+                        <HorizontalStackLayout>
+
+                            <Label Text="R$ 0.000,00" VerticalOptions="Start" HorizontalOptions="Start"/>
+                            <Label Text="                                            R$ 0.000,00" VerticalOptions="End" HorizontalOptions="Start" FontSize="Micro"/>
+                         
+                        </HorizontalStackLayout>
+
+                        <Slider Minimum="0" Maximum="100" MinimumTrackColor="Green" Value="30" MaximumTrackColor="DarkGray" ThumbColor="Transparent" IsEnabled="False"/>
+
+                        <Label Text=" "/>
+
+                        <Label Text="Atingir até" TextColor="DarkGray" FontSize="Small"/>
+                        <Label Text="00/00/0000"/>
+
+                        <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <Frame BorderColor="Transparent" HeightRequest="50">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <HorizontalStackLayout>
+
+                                    <Image Source="excluir_icone.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text=" "/>
+                                    <Label Text=" Excluir" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                </HorizontalStackLayout>
+
+                            </Frame>
+
+                            <Label Text=" "/>
+
+                            <Frame BorderColor="Transparent" HeightRequest="50">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <HorizontalStackLayout>
+
+                                    <Image Source="editar_icone.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text=" "/>
+                                    <Label Text=" Editar" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                </HorizontalStackLayout>
+
+                            </Frame>
+
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+
+
+                </Frame>
+
+                <Label Text=" "/>
+
+                <Frame BorderColor="Black">
+
+                    <VerticalStackLayout Margin="5">
+
+                        <HorizontalStackLayout>
+
+                            <Ellipse Fill="Red" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text=" despesa 01" TextColor="DarkGray" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                        </HorizontalStackLayout>
+
+                        <Label Text=" "/>
+
+                        <HorizontalStackLayout>
+
+                            <Label Text="R$ 0.000,00" VerticalOptions="Start" HorizontalOptions="Start"/>
+                            <Label Text="                                            R$ 0.000,00" VerticalOptions="End" HorizontalOptions="Start" FontSize="Micro"/>
+                         
+                        </HorizontalStackLayout>
+
+                        <Slider Minimum="0" Maximum="100" MinimumTrackColor="Red" Value="30" MaximumTrackColor="DarkGray" ThumbColor="Transparent" IsEnabled="False"/>
+
+                        <Label Text=" "/>
+
+                        <Label Text="Saldo restante" TextColor="DarkGray" FontSize="Small"/>
+                        <Label Text="R$ 0.000,00"/>
+
+                        <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <Frame BorderColor="Transparent" HeightRequest="50">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <HorizontalStackLayout>
+
+                                    <Image Source="excluir_icone.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text=" "/>
+                                    <Label Text=" Excluir" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                </HorizontalStackLayout>
+
+                            </Frame>
+
+                            <Label Text=" "/>
+
+                            <Frame BorderColor="Transparent" HeightRequest="50">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <HorizontalStackLayout>
+
+                                    <Image Source="editar_icone.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text=" "/>
+                                    <Label Text=" Editar" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                </HorizontalStackLayout>
+
+                            </Frame>
+
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+
+
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
         
 
     </ContentPage>

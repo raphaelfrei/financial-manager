@@ -17,11 +17,11 @@
 
             <Label Text=" " HeightRequest="50"/>
             <Label Text="E-mail" HeightRequest="30"/>
-            <Entry Placeholder="nome@exemplo.com" Keyboard="Email"/>
+            <Entry Placeholder="nome@exemplo.com" Keyboard="Email" x:Name="EtEmail"/>
 
             <Label Text=" " HeightRequest="30"/>
             <Label Text="Senha" HeightRequest="30"/>
-            <Entry Placeholder="Insira sua senha" IsPassword="True"/>
+            <Entry Placeholder="Insira sua senha" IsPassword="True" x:Name="EtSenha"/>
 
             <Label Text="Esqueceu a senha?" TextDecorations="Underline">
                 <Label.GestureRecognizers>
